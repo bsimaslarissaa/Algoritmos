@@ -1,0 +1,27 @@
+# Estudo de Caso 4 - Controle de Vendas em uma Loja de Eletrônicos
+vendas = [
+    {"nome": "TV 50\"", "preco": 2500.00},
+    {"nome": "Smartphone", "preco": 1800.00},
+    {"nome": "Fone de Ouvido", "preco": 150.00},
+    {"nome": "Notebook", "preco": 3500.00},
+    {"nome": "Mouse", "preco": 80.00}
+]
+
+
+total = sum(produto["preco"] for produto in vendas)
+print(f"Total arrecadado: R$ {total:.2f}\n")
+
+
+mais_caro = max(vendas, key=lambda x: x["preco"])
+mais_barato = min(vendas, key=lambda x: x["preco"])
+print(f" Produto mais caro: {mais_caro['nome']} - R$ {mais_caro['preco']:.2f}")
+print(f" Produto mais barato: {mais_barato['nome']} - R$ {mais_barato['preco']:.2f}\n")
+
+
+consulta = "Notebook"  
+encontrados = [p for p in vendas if p["nome"].lower() == consulta.lower()]
+
+if encontrados:
+    print(f" O produto '{consulta}' foi vendido {len(encontrados)} vez(es).")
+else:
+    print(f" O produto '{consulta}' não foi vendido.")
