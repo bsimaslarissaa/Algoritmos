@@ -59,13 +59,14 @@ def ranking_clientes(pedidos):
     ranking = sorted(gastos.items(), key=lambda x: x[1], reverse=True)
     return ranking[:3]
 
-print("Total gasto por Ana:", total_gasto(pedidos, "Ana"))
-print("Total gasto por Bruno:", total_gasto(pedidos, "Bruno"))
-print("Total gasto por Carla:", total_gasto(pedidos, "Carla"))
+print("Total gasto por Larissa:", total_gasto(pedidos, "Larissa"))
+print("Total gasto por Leonardo:", total_gasto(pedidos, "Leonardo"))
+print("Total gasto por Leticia:", total_gasto(pedidos, "Leticia"))
 
 prato, qtd = prato_mais_vendido(pedidos)
 print("Prato mais vendido:", prato, f"({qtd} vezes)")
 
 print("Ranking dos 3 clientes que mais gastaram:")
 for pos, (cliente, valor) in enumerate(ranking_clientes(pedidos), start=1):
+
     print(f"{pos}º {cliente} - R$ {valor:.2f}")
