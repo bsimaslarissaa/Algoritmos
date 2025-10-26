@@ -1,0 +1,68 @@
+# Jogo caça ao Tesouro utilizando matriz 5x5 .
+
+import random
+
+
+def exibir_tabuleiro(tabuleiro):
+    print("\n=== Tabuleiro Caça ao Tesouro===")
+    for linha in tabuleiro:
+        print(" ".join(linha))
+    print()
+
+
+tabuleiro = [["~" for _ in range(5)] for _ in range(5)]
+
+
+tesouro_linha = random.randint(0, 4)
+tesouro_coluna = random.randint(0, 4)
+
+tentativas = 7
+
+print("Bem-vindo jogador, ao Jogo de Caça ao Tesouro!")
+print("Você tem 7 tentativas para encontrar o tesouro escondido, boa sorte!")
+
+
+for tentativa in range(1, tentativas + 1):
+    exibir_tabuleiro(tabuleiro)
+    print(f"Tentativa {tentativa} de {tentativas}")
+    
+    while True:
+        try:
+            linha = int(input("Escolha a linha (0-4): "))
+            coluna = int(input("Escolha a coluna (0-4): "))
+            
+            if 0 <= linha <= 4 and 0 <= coluna <= 4:
+                break
+            else:
+                print("Valores fora do intervalo, por favor digite entre 0 e 4.")
+        except ValueError:
+            print("Entrada inválida, digite números inteiros entre 0 e 4.")
+  
+    if linha == tesouro_linha and coluna == tesouro_coluna:
+        tabuleiro[linha][coluna] = "T"
+        exibir_tabuleiro(tabuleiro)
+        print(" Parabéns jogador (a)! Você encontrou o tesouro! ")
+        break
+    else:
+        
+        tabuleiro[linha][coluna] = "X"
+       
+        dica = []
+        if linha < tesouro_linha:
+            dica.append("mais para baixo")
+        elif linha > tesouro_linha:
+            dica.append("mais para cima")
+        
+        if coluna < tesouro_coluna:
+            dica.append("mais para a direita")
+        elif coluna > tesouro_coluna:
+            dica.append("mais para a esquerda")
+        
+        print("O tesouro está " + " e ".join(dica) + ".")
+        
+        
+        if tentativa == tentativas:
+            print("\nSuas tentativas acabaram!")
+            print(f"O tesouro estava na posição ({tesouro_linha}, {tesouro_coluna}).")
+            tabuleiro[tesouro_linha][tesouro_coluna] = "T"
+            exibir_tabuleiro(tabuleiro)
